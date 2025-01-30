@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Tailwind CSS out -->
+    <!-- <link rel="stylesheet" href="../static/troll.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}"> -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- HTMX CDN include -->
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon_io/favicon.ico">
+
+    <title>{% block title %} Isak's Uploads {% endblock %}</title>
+  </head>
+
+  <body>
+    <nav class="fixed top-0 left-0 w-full bg-gray-900 text-white shadow-md p-4 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="text-xl font-bold ml-4">
+            <a href="/">MyLogo</a>
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="flex space-x-6">
+            <a href="/" class="hover:underline">Home</a>
+            <a href="/upload" class="hover:underline">Upload</a>
+            <a href="" class="hover:underline">Browse</a>
+        </div>
+        
+        <!-- User Info -->
+        <div class="mr-4">
+            {% if session %}
+                <p class="inline">Logged in as <a href="/profile" class="underline text-blue-400">{{ session['username'] }}</a></p>
+                <a href="/logout" class="ml-4 text-blue-400 hover:underline">Logout?</a>
+            {% else %}
+                <a href="/login" class="text-blue-400 hover:underline">Login?</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class=""> <!-- Push content below fixed navbar -->
+        {% block content %} {% endblock %}
+    </div>
+  </body>
+
+</html>
